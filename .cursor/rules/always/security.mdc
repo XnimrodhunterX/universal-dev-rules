@@ -1,0 +1,42 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Universal Development Rules - Security Standards
+
+Apply these security practices in all code development:
+
+## Credential Hygiene
+- Never commit secrets, API keys, or credentials to version control
+- Use environment variables or external secret management systems
+- Implement secret rotation and expiration policies
+- Apply least-privilege access principles
+
+## Input Validation & Sanitization
+- Validate all user inputs at API boundaries
+- Use parameterized queries to prevent SQL injection
+- Sanitize outputs to prevent XSS vulnerabilities
+- Implement rate limiting and request throttling
+
+## Authentication & Authorization
+- Use strong authentication mechanisms (OAuth 2.0, OIDC)
+- Implement proper session management
+- Apply role-based access control (RBAC)
+- Use JWT tokens with appropriate expiration
+
+## Security Scanning
+- Integrate SAST tools in CI/CD pipelines
+- Perform dependency vulnerability scanning
+- Implement container security scanning
+- Apply infrastructure security scanning
+
+## Data Protection
+- Encrypt data at rest and in transit
+- Implement proper data classification
+- Apply data residency and privacy regulations
+- Use secure communication protocols (TLS 1.3+)
+
+@intelligent_ide_rules/security/SEC-01-credential-hygiene.md
+@intelligent_ide_rules/security/SEC-04-identity-access-management.md
+@intelligent_ide_rules/security/SEC-11-secure-coding-standards.md

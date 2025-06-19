@@ -1,0 +1,165 @@
+# Service Metadata Template
+# This file MUST be present in the root of every service repository
+# Used by CI/CD, monitoring, and documentation systems
+
+# Basic Service Information
+name: "service-name"  # REQUIRED: Kebab-case service name
+description: "Brief description of service purpose"  # REQUIRED
+version: "1.0.0"  # REQUIRED: Semantic version
+owner:
+  team: "team-name"  # REQUIRED: Owning team identifier
+  email: "team@company.com"  # REQUIRED: Team contact email
+  slack: "#team-channel"  # OPTIONAL: Team Slack channel
+  oncall: "team-oncall-rotation"  # OPTIONAL: Oncall rotation identifier
+
+# Service Classification
+service:
+  type: "API"  # REQUIRED: API | Worker | CLI | Library
+  tier: "1"  # REQUIRED: 1 (critical) | 2 (important) | 3 (non-critical)
+  domain: "user-management"  # REQUIRED: Business domain
+  runtime: "python"  # REQUIRED: Primary runtime (python, node, java, go, etc.)
+
+# Network & Ingress Configuration
+ingress:
+  enabled: true  # REQUIRED: true if service accepts external traffic
+  host: "api.service.company.com"  # REQUIRED if ingress.enabled
+  paths:
+    - "/v1/users"
+    - "/v1/auth"
+  tls:
+    enabled: true  # REQUIRED: TLS termination
+    cert_source: "letsencrypt"  # cert-manager, letsencrypt, manual
+  auth:
+    strategy: "oauth2"  # none, basic, oauth2, jwt, mtls
+    required_scopes: ["user:read", "user:write"]
+
+# Port Configuration
+ports:
+  http: 8080  # REQUIRED: Main HTTP port
+  metrics: 9090  # OPTIONAL: Metrics/health check port
+  debug: 8081  # OPTIONAL: Debug/profiling port
+
+# Resource & Scaling Configuration
+resources:
+  requests:
+    cpu: "100m"  # REQUIRED: CPU request
+    memory: "128Mi"  # REQUIRED: Memory request
+  limits:
+    cpu: "500m"  # REQUIRED: CPU limit
+    memory: "512Mi"  # REQUIRED: Memory limit
+
+scaling:
+  min_replicas: 2  # REQUIRED: Minimum instances
+  max_replicas: 10  # REQUIRED: Maximum instances
+  target_cpu: 70  # REQUIRED: CPU utilization target (%)
+  target_memory: 80  # REQUIRED: Memory utilization target (%)
+  custom_metrics: []  # OPTIONAL: Custom scaling metrics
+
+# Health & Monitoring
+health:
+  liveness_path: "/livez"  # REQUIRED
+  readiness_path: "/readyz"  # REQUIRED  
+  metrics_path: "/metrics"  # REQUIRED
+  startup_timeout: 30  # REQUIRED: Startup timeout in seconds
+
+# SLO Configuration (links to perf-budget.yaml)
+slo:
+  availability: 99.9  # REQUIRED: Target availability %
+  latency_p95: 200  # REQUIRED: P95 latency target (ms)
+  latency_p99: 500  # REQUIRED: P99 latency target (ms)
+  error_rate: 0.1  # REQUIRED: Error rate target (%)
+
+# Dependencies
+dependencies:
+  databases:
+    - name: "user-db"
+      type: "postgresql"
+      critical: true
+  external_services:
+    - name: "auth-service"
+      url: "https://auth.company.com"
+      critical: true
+    - name: "notification-service"
+      url: "https://notifications.company.com"
+      critical: false
+  message_queues:
+    - name: "user-events"
+      type: "rabbitmq"
+      critical: false
+
+# Security Configuration
+security:
+  secrets:
+    - "database-password"
+    - "api-keys"
+  pii_data: true  # REQUIRED: true if service handles PII
+  compliance:
+    - "GDPR"
+    - "SOC2"
+  threat_model: "docs/threat-model.md"  # OPTIONAL: Path to threat model
+  
+# Documentation References
+documentation:
+  readme: "README.md"  # REQUIRED
+  api_spec: "docs/openapi.yaml"  # REQUIRED if service.type == "API"
+  runbook: "docs/runbook.md"  # REQUIRED
+  architecture: "docs/architecture.md"  # OPTIONAL
+  
+# CI/CD Configuration
+cicd:
+  build_tool: "docker"  # REQUIRED: docker, gradle, npm, etc.
+  test_command: "make test"  # REQUIRED: Command to run tests
+  lint_command: "make lint"  # REQUIRED: Command to run linting
+  security_scan: true  # REQUIRED: Enable security scanning
+  dependency_check: true  # REQUIRED: Enable dependency vulnerability scanning
+
+# Environment Specific Configurations
+environments:
+  development:
+    replicas: 1
+    resources:
+      requests:
+        cpu: "50m"
+        memory: "64Mi"
+  staging:
+    replicas: 2
+    # Inherits from base resources
+  production:
+    replicas: 3
+    # Inherits from base resources
+
+# Monitoring & Alerting
+alerts:
+  channels:
+    - "#alerts-team"
+    - "team@company.com"
+  rules:
+    - name: "HighErrorRate"
+      condition: "error_rate > 1%"
+      duration: "5m"
+    - name: "HighLatency"
+      condition: "p95_latency > 500ms"
+      duration: "2m"
+    - name: "LowAvailability"
+      condition: "availability < 99.9%"
+      duration: "10m"
+
+# Data Management (if applicable)
+data:
+  stores:
+    - name: "user_profiles"
+      type: "table"
+      pii: true
+      retention: "7 years"
+  backups:
+    enabled: true
+    frequency: "daily"
+    retention: "30 days"
+
+# Feature Flags (if applicable)
+feature_flags:
+  enabled: true
+  provider: "launchdarkly"  # launchdarkly, rollout, custom
+  
+# Schema Version (for validation)
+schema_version: "1.0" 

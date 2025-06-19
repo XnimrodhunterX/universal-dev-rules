@@ -1,0 +1,48 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Universal Development Rules - Microservices Governance
+
+Apply these patterns when designing or refactoring microservices:
+
+## Service Boundaries
+- Apply domain-driven design (DDD) principles for service boundaries
+- Ensure services own their data and business logic
+- Avoid shared databases between services
+- Implement proper service contracts and APIs
+
+## Communication Patterns
+- Use asynchronous messaging for service-to-service communication
+- Implement event-driven architecture with proper event schemas
+- Apply saga patterns for distributed transactions
+- Use circuit breakers for external service calls
+
+## Service Mesh Integration
+- Implement service mesh (Istio/Linkerd) for traffic management
+- Use mesh for security policies and mTLS
+- Apply observability through mesh telemetry
+- Implement canary deployments through mesh
+
+## Data Management
+- Implement database-per-service pattern
+- Use event sourcing for complex business logic
+- Apply CQRS where read/write patterns differ
+- Implement proper data consistency strategies
+
+## Deployment & Operations
+- Use container orchestration (Kubernetes) for service deployment
+- Implement proper health checks and readiness probes
+- Apply blue-green or canary deployment strategies
+- Use infrastructure as code for service provisioning
+
+## Monitoring & Observability
+- Implement distributed tracing across service calls
+- Use correlation IDs for request tracking
+- Apply proper logging and metrics collection
+- Implement service-level monitoring and alerting
+
+@intelligent_ide_rules/MI-08-microservices-governance.md
+@intelligent_ide_rules/AR-01-event-driven-architecture-core.md
+@intelligent_ide_rules/AR-02-event-driven-architecture-enterprise.md

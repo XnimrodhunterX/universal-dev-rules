@@ -1,0 +1,35 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Universal Development Rules - Core Architecture
+
+Apply these architectural principles consistently across all development:
+
+## API-First Design
+- Design APIs before implementation using OpenAPI 3.0+ specifications
+- Follow RFC 9457 for structured error responses
+- Implement consistent pagination, filtering, and sorting patterns
+- Use semantic versioning for API contracts
+
+## Health & Observability
+- Implement standardized health endpoints: `/livez`, `/readyz`, `/metrics`
+- Use structured logging with correlation IDs and trace context
+- Apply OpenTelemetry for distributed tracing
+- Include performance budgets and SLO monitoring
+
+## Resilience Patterns
+- Implement circuit breaker patterns for external dependencies
+- Use exponential backoff with jitter for retries
+- Apply bulkhead pattern for resource isolation
+- Design for graceful degradation under load
+
+## Security-First
+- Apply zero-trust architecture principles
+- Use least-privilege access controls
+- Implement defense-in-depth strategies
+- Validate all inputs and sanitize outputs
+
+@intelligent_ide_rules/AR-05-design-architecture-principles.md
+@intelligent_ide_rules/CN-04-comprehensive-monitoring-observability.md

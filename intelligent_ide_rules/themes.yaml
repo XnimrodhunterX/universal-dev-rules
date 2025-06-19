@@ -1,0 +1,326 @@
+version: '2.1'
+last_updated: '2024-12-19'
+themes:
+  architecture_design:
+    name: Architecture & Design
+    description: System architecture, design patterns, and structural guidelines
+    color: '#ef4444'
+    icon: "🏗️"
+    rules:
+    - AR-01-event-driven-architecture-core
+    - AR-02-event-driven-architecture-enterprise
+    - AR-05-design-architecture-principles
+    - AR-06-network-topology-ingress
+    - MI-01-service-architecture-guidelines
+    - MI-03-service-metadata-roles
+    - MI-08-microservices-governance
+    - CN-05-runtime-operations-standards
+    - CN-17-intelligent-reuse-catalog
+    - CN-10-governance-principles
+    - CN-16-error-handling
+    - QC-07-documentation-standards
+    - AR-02-event-driven-architecture-enterprise
+    - AR-01-event-driven-architecture-core
+    - MI-08-microservices-governance
+    - MI-01-service-architecture-guidelines
+  security_compliance:
+    name: Security & Compliance
+    description: Security controls, compliance frameworks, and regulatory requirements
+    color: '#dc2626'
+    icon: "\U0001F512"
+    rules:
+    - security/SEC-01-credential-hygiene
+    - security/SEC-02-sast-secrets-scanning
+    - security/SEC-03-runtime-hardening
+    - security/SEC-04-identity-access-management
+    - security/SEC-05-incident-response-automation
+    - security/SEC-06-vulnerability-management
+    - security/SEC-07-supply-chain-security
+    - security/SEC-08-data-protection-privacy
+    - security/SEC-09-network-security-zero-trust
+    - security/SEC-10-threat-modeling-risk-reviews
+    - security/SEC-11-secure-coding-standards
+    - security/SEC-14-cloud-native-secrets-delivery
+    - security/SEC-15-continuous-compliance-audit
+    - CN-13-security-encryption
+    - CN-15-secrets-management
+    - CN-18-devsecops-standards
+    - SU-02-software-supply-chain-security
+    - DP-04-data-governance-residency
+  operations_reliability:
+    name: Operations & Reliability
+    description: Infrastructure operations, monitoring, deployment, and system reliability
+    color: '#059669'
+    icon: "⚙️"
+    rules:
+    - CN-05-runtime-operations-standards
+    - CN-04-comprehensive-monitoring-observability
+    - CN-07-deployment-strategies
+    - CN-01-infrastructure-as-code
+    - CN-02-comprehensive-container-orchestration
+    - DP-06-resource-management
+    - AR-07-resilience-recovery-standards
+    - MI-04-api-gateway-management
+    - CN-09-sre-incident-response
+  developer_workflow:
+    name: Developer Workflow
+    description: Development processes, tooling, and productivity optimization
+    color: '#7c3aed'
+    icon: "\U0001F4BB"
+    rules:
+    - DP-01-database-design
+    - DP-02-database-operations
+    - CN-14-environment-configuration
+    - MI-05-comprehensive-api-standards
+    - QC-04-cicd-pipelines
+    - CN-08-release-management
+    - CN-17-intelligent-reuse-catalog
+    - QC-06-code-review-standards
+  quality_engineering:
+    name: Quality Engineering
+    description: Testing strategies, quality assurance, and continuous improvement
+    color: '#ea580c'
+    icon: "\U0001F9EA"
+    rules:
+    - QC-01-comprehensive-testing-standards
+    - QC-05-quality-assurance-automation
+    - QC-06-code-review-standards
+    - FE-03-accessibility-inclusive-design
+  data_ai:
+    name: Data & AI
+    description: Data management, machine learning, and AI governance
+    color: '#0891b2'
+    icon: "\U0001F916"
+    rules:
+    - DP-01-database-design
+    - DP-02-database-operations
+    - DP-03-data-pipeline-standards
+    - ML-01-mlops-standards
+    - DP-04-data-governance-residency
+    - ML-02-ai-ethics-responsible-ml
+  sustainability:
+    name: Sustainability
+    description: Environmental impact, green operations, and sustainable development
+    color: '#16a34a'
+    icon: "\U0001F331"
+    rules:
+    - SU-01-green-ops-sustainability
+  frontend_mobile:
+    name: Frontend & Mobile
+    description: User interface development, mobile applications, and user experience
+    color: '#db2777'
+    icon: "\U0001F4F1"
+    rules:
+    - FE-01-frontend-development-standards
+    - FE-02-mobile-development-standards
+    - FE-03-accessibility-inclusive-design
+  performance_scalability:
+    name: Performance & Scalability
+    description: System performance optimization, scalability patterns, and capacity
+      planning
+    color: '#9333ea'
+    icon: "\U0001F680"
+    rules:
+    - CN-03-cloud-platform-standards
+    - AR-04-performance-optimization
+    - AR-03-scalability-architecture
+    - CN-07-deployment-strategies
+    - CN-02-comprehensive-container-orchestration
+    - AR-07-resilience-recovery-standards
+    - SU-01-green-ops-sustainability
+rule_coverage:
+  total_rules: 63
+  mapped_rules: 63
+  unmapped_rules: []
+  coverage_percentage: 100
+theme_statistics:
+  total_themes: 9
+  average_rules_per_theme: 7.0
+  most_popular_theme: security_compliance
+  least_popular_theme: sustainability
+cross_theme_rules:
+  01B-runtime-operations-standards:
+  - architecture_design
+  - operations_reliability
+  04A-database-design:
+  - developer_workflow
+  - data_ai
+  04B-database-operations:
+  - developer_workflow
+  - data_ai
+  10A-intelligent-reuse-catalog:
+  - architecture_design
+  - developer_workflow
+  09B-deployment-strategies:
+  - operations_reliability
+  - performance_scalability
+  10C-container-orchestration:
+  - operations_reliability
+  - performance_scalability
+  13A-business-continuity:
+  - operations_reliability
+  - performance_scalability
+  18B-code-review-standards:
+  - developer_workflow
+  - quality_engineering
+  19A-green-ops-sustainability:
+  - sustainability
+  - performance_scalability
+  19C-data-governance-residency:
+  - security_compliance
+  - data_ai
+  19E-accessibility-inclusive-design:
+  - quality_engineering
+  - frontend_mobile
+technology_domains:
+  microservices:
+    name: Microservices Architecture
+    description: Service mesh, API governance, distributed systems
+    primary_themes:
+    - architecture_design
+    - operations_reliability
+    - developer_workflow
+    enhanced_rules:
+    - 17B-microservices-governance
+    - 16B-api-gateway-management
+    - 16A-microservices-architecture
+    - 02A-service-container-design
+    - 06A-api-design-standards
+    - 08C-monitoring-observability
+    tech_stack:
+    - Kubernetes
+    - Istio
+    - gRPC
+    - Kong
+    - Prometheus
+  data_platform:
+    name: Data Platform
+    description: Data pipelines, streaming, analytics, governance
+    primary_themes:
+    - data_ai
+    - performance_scalability
+    - security_compliance
+    enhanced_rules:
+    - 13B-data-pipeline-standards
+    - 15A-mlops-standards
+    - 19C-data-governance-residency
+    - 19D-ai-ethics-responsible-ml
+    - 04A-database-design
+    tech_stack:
+    - Kafka
+    - Spark
+    - Airflow
+    - dbt
+    - Snowflake
+  frontend_web:
+    name: Frontend Web Development
+    description: Modern web frameworks, performance, accessibility
+    primary_themes:
+    - frontend_mobile
+    - quality_engineering
+    - performance_scalability
+    enhanced_rules:
+    - 14A-frontend-development-standards
+    - 19E-accessibility-inclusive-design
+    - 07A-testing-strategy
+    - 09A-cicd-pipelines
+    tech_stack:
+    - React
+    - TypeScript
+    - Webpack
+    - Jest
+    - Lighthouse
+  mobile_native:
+    name: Mobile Native Development
+    description: Native mobile development, cross-platform, app stores
+    primary_themes:
+    - frontend_mobile
+    - performance_scalability
+    - quality_engineering
+    enhanced_rules:
+    - 14B-mobile-development-standards
+    - 09B-deployment-strategies
+    - 07B-test-implementation
+    tech_stack:
+    - React Native
+    - Flutter
+    - Swift
+    - Kotlin
+    - Fastlane
+  cloud_native:
+    name: Cloud Native Platform
+    description: Container orchestration, serverless, cloud services
+    primary_themes:
+    - operations_reliability
+    - developer_workflow
+    - sustainability
+    enhanced_rules:
+    - 10B-infrastructure-as-code
+    - 10C-container-orchestration
+    - 09B-deployment-strategies
+    - 19A-green-ops-sustainability
+    - 13A-business-continuity
+    tech_stack:
+    - Kubernetes
+    - Docker
+    - Terraform
+    - Helm
+    - AWS Lambda
+  ml_ai:
+    name: ML/AI Platform
+    description: Machine learning pipelines, model governance, AI ethics
+    primary_themes:
+    - data_ai
+    - security_compliance
+    - quality_engineering
+    enhanced_rules:
+    - 15A-mlops-standards
+    - 19D-ai-ethics-responsible-ml
+    - 13B-data-pipeline-standards
+    - 08C-monitoring-observability
+    tech_stack:
+    - TensorFlow
+    - PyTorch
+    - MLflow
+    - Kubeflow
+    - Jupyter
+tech_stack_rules:
+  kubernetes:
+    applicable_rules:
+    - 10C-container-orchestration
+    - 09B-deployment-strategies
+    - 08C-monitoring-observability
+    - 13A-business-continuity
+    optimization_focus:
+    - Resource efficiency
+    - Auto-scaling
+    - Security policies
+    - Network policies
+  react:
+    applicable_rules:
+    - 14A-frontend-development-standards
+    - 19E-accessibility-inclusive-design
+    - 07A-testing-strategy
+    - 09A-cicd-pipelines
+    optimization_focus:
+    - Bundle optimization
+    - Component reusability
+    - Accessibility compliance
+    - Performance monitoring
+  kafka:
+    applicable_rules:
+    - 13B-data-pipeline-standards
+    - 19C-data-governance-residency
+    - 08C-monitoring-observability
+    - 13A-business-continuity
+    optimization_focus:
+    - Message ordering
+    - Partition strategies
+    - Consumer group management
+    - Schema evolution
+metadata:
+  generated_by: Universal Development Rules Framework
+  schema_version: '1.1'
+  validation_required: true
+  auto_update: true
+  technology_domain_support: true

@@ -1,0 +1,134 @@
+domains:
+  mi:
+    name: Microservices & Service Design
+    description: service boundaries, API contracts, deployment topologies
+    rules:
+    - MI-01-service-architecture-guidelines
+    - MI-03-service-metadata-roles
+    - MI-04-api-gateway-management
+    - MI-05-api-design-standards
+    - MI-06-api-documentation
+    - MI-07-api-versioning
+    - MI-08-microservices-governance
+    priority_rules:
+    - MI-01-service-architecture-guidelines
+    - MI-03-service-metadata-roles
+  ar:
+    name: Architecture & System Patterns
+    description: hexagonal, event-driven, CQRS, scalability, DR
+    rules:
+    - AR-01-event-driven-architecture-core
+    - AR-02-event-driven-architecture-enterprise
+    - AR-03-scalability-architecture
+    - AR-04-performance-optimization
+    - AR-05-design-architecture-principles
+    - AR-06-network-topology-ingress
+    - AR-07-disaster-recovery
+    - AR-08-business-continuity
+    priority_rules:
+    - AR-01-event-driven-architecture-core
+    - AR-02-event-driven-architecture-enterprise
+    - AR-03-scalability-architecture
+  dp:
+    name: Data Platform & Storage
+    description: pipelines, databases, governance, ML feature stores
+    rules:
+    - DP-01-database-design
+    - DP-02-database-operations
+    - DP-03-data-pipeline-standards
+    - DP-04-data-governance-residency
+    - DP-05-backup-standards
+    - DP-06-resource-management
+    priority_rules:
+    - DP-01-database-design
+    - DP-02-database-operations
+    - DP-03-data-pipeline-standards
+  fe:
+    name: Front-end & UX
+    description: SPA frameworks, accessibility, performance
+    rules:
+    - FE-01-frontend-development-standards
+    - FE-02-mobile-development-standards
+    - FE-03-accessibility-inclusive-design
+    priority_rules:
+    - FE-01-frontend-development-standards
+    - FE-02-mobile-development-standards
+    - FE-03-accessibility-inclusive-design
+  cloud_native:
+    name: "Cloud Native Operations"
+    description: "Container orchestration, monitoring, deployment automation"
+    rules:
+    - CN-01-infrastructure-as-code
+    - CN-02-comprehensive-container-orchestration
+    - CN-03-cloud-platform-standards
+    - CN-04-comprehensive-monitoring-observability
+    - CN-05-runtime-operations-standards
+    - CN-07-deployment-strategies
+    - CN-08-release-management
+    - CN-09-sre-incident-response
+    - CN-10-governance-principles
+    - CN-13-security-encryption
+    - CN-14-environment-configuration
+    - CN-15-secrets-management
+    - CN-16-error-handling
+    - CN-17-intelligent-reuse-catalog
+    - CN-18-devsecops-standards
+    priority_rules:
+    - CN-01-infrastructure-as-code
+    - CN-02-comprehensive-container-orchestration
+    - CN-03-cloud-platform-standards
+  ml:
+    name: Machine Learning & AI
+    description: model lifecycle, MLOps, responsible AI
+    rules:
+    - ML-01-mlops-standards
+    - ML-02-ai-ethics-responsible-ml
+    priority_rules:
+    - ML-01-mlops-standards
+    - ML-02-ai-ethics-responsible-ml
+  sec:
+    name: Security & Compliance
+    description: credentials, IAM, runtime hardening, audits
+    rules:
+    - security/SEC-01-credential-hygiene
+    - security/SEC-02-sast-secrets-scanning
+    - security/SEC-03-runtime-hardening
+    - security/SEC-04-identity-access-management
+    - security/SEC-05-incident-response-automation
+    - security/SEC-06-vulnerability-management
+    - security/SEC-07-supply-chain-security
+    - security/SEC-08-data-protection-privacy
+    - security/SEC-09-network-security-zero-trust
+    - security/SEC-10-threat-modeling-risk-reviews
+    - security/SEC-11-secure-coding-standards
+    - security/SEC-13-authentication-hardening
+    - security/SEC-14-cloud-native-secrets-delivery
+    - security/SEC-15-continuous-compliance-audit
+    priority_rules:
+    - security/SEC-02-sast-secrets-scanning
+    - security/SEC-11-secure-coding-standards
+    - security/SEC-10-threat-modeling-risk-reviews
+  qc:
+    name: Quality, Testing & Dev Workflow
+    description: unit/integration tests, CI/CD, linting
+    rules:
+    - QC-01-testing-strategy
+    - QC-02-test-implementation
+    - QC-03-test-automation
+    - QC-04-cicd-pipelines
+    - QC-05-quality-assurance-automation
+    - QC-06-code-review-standards
+    - QC-07-documentation-standards
+    priority_rules:
+    - QC-01-testing-strategy
+    - QC-02-test-implementation
+    - QC-03-test-automation
+  su:
+    name: Sustainability, Ethics & Inclusion
+    description: green ops, AI ethics, accessibility
+    rules:
+    - SU-01-green-ops-sustainability
+    - SU-02-software-supply-chain-security
+    priority_rules:
+    - SU-01-green-ops-sustainability
+    - SU-02-software-supply-chain-security

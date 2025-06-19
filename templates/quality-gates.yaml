@@ -1,0 +1,298 @@
+# Quality Gates Configuration
+# This file defines the quality standards and gates for CI/CD pipelines
+# Customize per repository type and stack while maintaining minimum standards
+
+# Schema Version
+schema_version: "1.0"
+last_updated: "2024-01-15"
+
+# Repository Information
+repository:
+  name: "repository-name"
+  type: "service"  # service, library, frontend, data-pipeline, infrastructure
+  stack: "python"  # python, node, java, go, rust, etc.
+
+# Code Quality Gates
+code_quality:
+  linting:
+    enabled: true
+    fail_on_error: true
+    tools:
+      python: ["flake8", "black", "isort", "mypy"]
+      javascript: ["eslint", "prettier"]
+      typescript: ["eslint", "@typescript-eslint", "prettier"]
+      java: ["checkstyle", "spotbugs", "pmd"]
+      go: ["golint", "gofmt", "go vet"]
+    config_files:
+      - ".flake8"
+      - "pyproject.toml"
+      - ".eslintrc.js"
+      - "tsconfig.json"
+
+  formatting:
+    enabled: true
+    fail_on_error: true
+    auto_fix: false  # Set to true for auto-formatting PRs
+    tools:
+      python: "black"
+      javascript: "prettier"
+      typescript: "prettier"
+      java: "google-java-format"
+      go: "gofmt"
+
+  complexity:
+    enabled: true
+    max_complexity: 10  # Cyclomatic complexity threshold
+    fail_on_error: false  # Warning only
+    tools:
+      python: "radon"
+      javascript: "eslint-plugin-complexity"
+
+# Testing Requirements
+testing:
+  unit_tests:
+    enabled: true
+    fail_on_error: true
+    coverage:
+      minimum: 80  # Minimum coverage percentage
+      fail_below: 70  # Fail build if below this threshold
+      report_format: ["html", "xml", "json"]
+    timeout: 300  # Test timeout in seconds
+    
+  integration_tests:
+    enabled: true
+    fail_on_error: true
+    timeout: 600
+    coverage:
+      minimum: 60
+      
+  e2e_tests:
+    enabled: false  # Enable for frontend/API services
+    fail_on_error: true
+    timeout: 900
+    browser_matrix: ["chrome", "firefox"]  # For frontend tests
+    
+  performance_tests:
+    enabled: false  # Enable for critical services
+    tools: ["k6", "locust", "jmeter"]
+    thresholds:
+      p95_latency: 500  # milliseconds
+      error_rate: 1.0   # percentage
+      throughput: 100   # requests per second
+
+# Security Gates
+security:
+  secrets_scanning:
+    enabled: true
+    fail_on_error: true
+    tools: ["truffleHog", "git-secrets", "gitleaks"]
+    patterns:
+      - "password"
+      - "secret"
+      - "token"
+      - "key"
+      - "private"
+    
+  dependency_scanning:
+    enabled: true
+    fail_on_error: false  # Warning for now
+    tools:
+      python: ["safety", "bandit"]
+      javascript: ["npm audit", "snyk"]
+      java: ["owasp-dependency-check"]
+      go: ["nancy", "gosec"]
+    severity_threshold: "high"  # low, medium, high, critical
+    
+  sast_scanning:
+    enabled: true
+    fail_on_error: false
+    tools:
+      python: ["bandit", "semgrep"]
+      javascript: ["eslint-security", "semgrep"]
+      java: ["spotbugs-security", "semgrep"]
+    
+  container_scanning:
+    enabled: true
+    fail_on_error: false
+    tools: ["trivy", "grype", "dockle"]
+    severity_threshold: "high"
+    scan_targets: ["dockerfile", "image"]
+
+# Documentation Gates
+documentation:
+  readme:
+    enabled: true
+    required_sections:
+      - "Getting Started"
+      - "API Documentation"
+      - "Contributing"
+      - "License"
+    fail_on_missing: true
+    
+  api_documentation:
+    enabled: true  # For API services
+    formats: ["openapi", "asyncapi"]
+    required_files: ["docs/openapi.yaml"]
+    validation: true
+    fail_on_error: true
+    
+  code_comments:
+    enabled: true
+    minimum_coverage: 70  # For public functions/classes
+    fail_on_error: false
+    tools:
+      python: ["pydocstyle"]
+      javascript: ["jsdoc"]
+      java: ["javadoc"]
+
+# Build & Package Gates
+build:
+  compilation:
+    enabled: true
+    fail_on_error: true
+    warnings_as_errors: false
+    timeout: 600
+    
+  packaging:
+    enabled: true
+    fail_on_error: true
+    artifact_scanning: true
+    size_limits:
+      docker_image: "500MB"  # Compressed image size
+      npm_package: "10MB"
+      jar_file: "50MB"
+      
+  licensing:
+    enabled: true
+    allowed_licenses:
+      - "MIT"
+      - "Apache-2.0"
+      - "BSD-3-Clause"
+      - "ISC"
+    forbidden_licenses:
+      - "GPL-3.0"
+      - "AGPL-3.0"
+    fail_on_forbidden: true
+
+# Environment-Specific Gates
+environments:
+  development:
+    # Relaxed standards for development
+    code_quality:
+      linting:
+        fail_on_error: false
+    testing:
+      unit_tests:
+        coverage:
+          minimum: 60
+          
+  staging:
+    # Standard quality gates
+    # Inherits from base configuration
+    
+  production:
+    # Strictest quality gates
+    security:
+      dependency_scanning:
+        fail_on_error: true
+      sast_scanning:
+        fail_on_error: true
+      container_scanning:
+        fail_on_error: true
+    testing:
+      unit_tests:
+        coverage:
+          minimum: 85
+
+# Git & VCS Gates
+git:
+  commit_messages:
+    enabled: true
+    convention: "conventional"  # conventional, angular, custom
+    tools: ["commitlint"]
+    fail_on_error: true
+    
+  branch_protection:
+    enabled: true
+    require_reviews: 2
+    dismiss_stale_reviews: true
+    require_status_checks: true
+    
+  pr_requirements:
+    max_size: 500  # Lines of code
+    require_tests: true
+    require_docs: true
+    auto_label: true
+
+# Performance Gates
+performance:
+  startup_time:
+    enabled: true
+    max_seconds: 30
+    preferred_seconds: 5
+    fail_on_error: false
+    
+  build_time:
+    enabled: true
+    max_seconds: 600
+    preferred_seconds: 180
+    fail_on_error: false
+    
+  test_time:
+    enabled: true
+    max_seconds: 300
+    preferred_seconds: 60
+    fail_on_error: false
+
+# Integration Gates
+integrations:
+  docker:
+    enabled: true
+    multi_stage: true
+    base_image_scan: true
+    non_root_user: true
+    health_check: true
+    
+  kubernetes:
+    enabled: false
+    manifest_validation: true
+    resource_limits: true
+    security_context: true
+    
+  database:
+    enabled: false
+    migration_validation: true
+    backward_compatibility: true
+    
+# Notification Configuration
+notifications:
+  success:
+    channels: ["slack://team-channel"]
+    mentions: []
+    
+  failure:
+    channels: ["slack://team-alerts", "email://team@company.com"]
+    mentions: ["@oncall"]
+    
+  warnings:
+    channels: ["slack://team-channel"]
+    mentions: []
+
+# Exemptions (use sparingly)
+exemptions:
+  # Temporary exemptions with expiration dates
+  # - rule: "security.dependency_scanning"
+  #   reason: "Waiting for upstream fix"
+  #   expires: "2024-02-15"
+  #   approver: "security-team"
+
+# Custom Gates (per repository)
+custom_gates:
+  # Example: Check for specific file presence
+  required_files:
+    enabled: false
+    files:
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - ".github/workflows/ci.yml"
+    fail_on_missing: true 

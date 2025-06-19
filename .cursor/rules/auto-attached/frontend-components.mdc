@@ -1,0 +1,53 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Universal Development Rules - Frontend Development
+
+When developing frontend components and applications:
+
+## Component Architecture
+- Use functional components with hooks (React) or composition API (Vue)
+- Implement proper component composition and reusability
+- Apply single responsibility principle to components
+- Use TypeScript for type safety and better developer experience
+
+## State Management
+- Use local state for component-specific data
+- Apply global state management (Redux, Zustand, Pinia) for shared data
+- Implement proper state normalization for complex data
+- Use context/provide-inject for dependency injection
+
+## Performance Optimization
+- Implement code splitting and lazy loading
+- Use React.memo, useMemo, useCallback for optimization
+- Apply proper image optimization and lazy loading
+- Implement virtual scrolling for large lists
+
+## Styling & Design System
+- Use CSS-in-JS or utility-first CSS frameworks
+- Implement consistent design tokens and theme system
+- Apply responsive design principles
+- Use CSS Grid and Flexbox for layouts
+
+## Accessibility (a11y)
+- Implement WCAG 2.1 AA compliance
+- Use semantic HTML elements properly
+- Provide proper ARIA labels and roles
+- Test with screen readers and keyboard navigation
+
+## Testing Frontend Components
+- Write unit tests for component logic
+- Use testing library for component testing
+- Implement visual regression testing
+- Test accessibility with automated tools
+
+## Build & Deployment
+- Use modern build tools (Vite, Webpack, Rollup)
+- Implement proper bundle optimization
+- Use service workers for offline functionality
+- Apply proper caching strategies
+
+@intelligent_ide_rules/FE-01-frontend-development-standards.md
+@intelligent_ide_rules/FE-03-accessibility-inclusive-design.md

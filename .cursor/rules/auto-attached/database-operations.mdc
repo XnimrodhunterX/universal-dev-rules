@@ -1,0 +1,47 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Universal Development Rules - Database Operations
+
+When working with databases, apply these standards:
+
+## Schema Design
+- Use consistent naming conventions (snake_case for PostgreSQL, camelCase for MongoDB)
+- Implement proper indexing strategies for query performance
+- Apply database normalization principles (3NF minimum)
+- Include audit fields (created_at, updated_at, created_by, updated_by)
+
+## Migration Management
+- Use version-controlled database migrations
+- Implement reversible migrations where possible
+- Test migrations on production-like data volumes
+- Apply zero-downtime migration strategies
+
+## Query Optimization
+- Use parameterized queries to prevent SQL injection
+- Implement query performance monitoring
+- Apply proper connection pooling
+- Use read replicas for read-heavy workloads
+
+## Data Integrity
+- Implement proper foreign key constraints
+- Use database-level validation where appropriate
+- Apply transactional boundaries correctly
+- Implement proper backup and recovery procedures
+
+## Security & Compliance
+- Encrypt sensitive data at rest
+- Implement row-level security where needed
+- Apply principle of least privilege for database access
+- Use database audit logging for compliance
+
+## Performance Monitoring
+- Monitor query execution times and plans
+- Track database connection metrics
+- Implement alerting for performance degradation
+- Use database-specific monitoring tools
+
+@intelligent_ide_rules/DP-01-database-design.md
+@intelligent_ide_rules/DP-02-database-operations.md

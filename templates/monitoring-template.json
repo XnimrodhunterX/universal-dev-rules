@@ -1,0 +1,572 @@
+{
+  "dashboard": {
+    "title": "Development Workflow Health Dashboard",
+    "version": "1.0.0",
+    "description": "Comprehensive monitoring of development workflow metrics, PR velocity, test success rates, and security findings",
+    "refresh_interval": "30s",
+    "tags": ["development", "workflow", "health"],
+    "panels": [
+      {
+        "id": 1,
+        "title": "Deployment Frequency",
+        "type": "stat",
+        "description": "DORA metric: How often deployments occur",
+        "targets": [
+          {
+            "expr": "sum(rate(deployments_total{status=\"success\"}[7d])) by (environment)",
+            "legendFormat": "{{environment}}"
+          }
+        ],
+        "thresholds": [
+          {
+            "color": "red",
+            "value": 0.5
+          },
+          {
+            "color": "yellow", 
+            "value": 1.0
+          },
+          {
+            "color": "green",
+            "value": 3.0
+          }
+        ],
+        "unit": "deployments/day",
+        "decimals": 1
+      },
+      {
+        "id": 2,
+        "title": "Lead Time for Changes",
+        "type": "graph",
+        "description": "DORA metric: Time from code committed to deployed",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(lead_time_seconds_bucket[7d]))",
+            "legendFormat": "P50"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(lead_time_seconds_bucket[7d]))",
+            "legendFormat": "P95"
+          }
+        ],
+        "yAxes": [
+          {
+            "unit": "s",
+            "min": 0
+          }
+        ],
+        "thresholds": [
+          {
+            "value": 3600,
+            "colorMode": "critical",
+            "op": "gt"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Mean Time to Recovery (MTTR)",
+        "type": "stat",
+        "description": "DORA metric: Time to recover from failures",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(mean_time_to_recovery_seconds_bucket[30d]))",
+            "legendFormat": "MTTR"
+          }
+        ],
+        "thresholds": [
+          {
+            "color": "green",
+            "value": 0
+          },
+          {
+            "color": "yellow",
+            "value": 1800
+          },
+          {
+            "color": "red", 
+            "value": 3600
+          }
+        ],
+        "unit": "s"
+      },
+      {
+        "id": 4,
+        "title": "Change Failure Rate",
+        "type": "stat",
+        "description": "DORA metric: Percentage of deployments that cause failures",
+        "targets": [
+          {
+            "expr": "sum(rate(change_failures_total[30d])) / sum(rate(changes_total[30d])) * 100",
+            "legendFormat": "Failure Rate"
+          }
+        ],
+        "thresholds": [
+          {
+            "color": "green",
+            "value": 0
+          },
+          {
+            "color": "yellow",
+            "value": 10
+          },
+          {
+            "color": "red",
+            "value": 20
+          }
+        ],
+        "unit": "percent",
+        "max": 100
+      },
+      {
+        "id": 5,
+        "title": "Pull Request Velocity",
+        "type": "graph",
+        "description": "PR creation, review, and merge rates",
+        "targets": [
+          {
+            "expr": "sum(rate(pull_requests_created_total[1h]))",
+            "legendFormat": "Created"
+          },
+          {
+            "expr": "sum(rate(pull_requests_merged_total[1h]))",
+            "legendFormat": "Merged"
+          },
+          {
+            "expr": "sum(rate(pull_requests_reviewed_total[1h]))",
+            "legendFormat": "Reviewed"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "PRs per hour",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "PR Review Time",
+        "type": "graph",
+        "description": "Time from PR creation to first review and merge",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(pr_review_time_seconds_bucket[7d]))",
+            "legendFormat": "Time to First Review (P50)"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(pr_review_time_seconds_bucket[7d]))",
+            "legendFormat": "Time to First Review (P95)"
+          },
+          {
+            "expr": "histogram_quantile(0.50, rate(pr_merge_time_seconds_bucket[7d]))",
+            "legendFormat": "Time to Merge (P50)"
+          }
+        ],
+        "yAxes": [
+          {
+            "unit": "s",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Test Success Rate",
+        "type": "stat",
+        "description": "Percentage of test runs that pass",
+        "targets": [
+          {
+            "expr": "sum(rate(test_runs_total{result=\"pass\"}[1h])) / sum(rate(test_runs_total[1h])) * 100",
+            "legendFormat": "Success Rate"
+          }
+        ],
+        "thresholds": [
+          {
+            "color": "red",
+            "value": 0
+          },
+          {
+            "color": "yellow",
+            "value": 95
+          },
+          {
+            "color": "green",
+            "value": 98
+          }
+        ],
+        "unit": "percent",
+        "decimals": 1
+      },
+      {
+        "id": 8,
+        "title": "Test Coverage Trends",
+        "type": "graph",
+        "description": "Code coverage metrics over time",
+        "targets": [
+          {
+            "expr": "test_coverage_percentage",
+            "legendFormat": "{{service}} - {{type}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "unit": "percent",
+            "min": 0,
+            "max": 100
+          }
+        ],
+        "thresholds": [
+          {
+            "value": 90,
+            "colorMode": "critical",
+            "op": "lt"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Security Scan Findings",
+        "type": "table",
+        "description": "Security vulnerabilities by severity",
+        "targets": [
+          {
+            "expr": "security_findings_total",
+            "legendFormat": "{{severity}} - {{scanner}}"
+          }
+        ],
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "severity": {
+                  "aggregations": ["count"],
+                  "operation": "groupby"
+                }
+              }
+            }
+          }
+        ],
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName", 
+              "options": "high"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "orange"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Build Success Rate",
+        "type": "stat",
+        "description": "CI/CD pipeline success rate",
+        "targets": [
+          {
+            "expr": "sum(rate(builds_total{result=\"success\"}[1h])) / sum(rate(builds_total[1h])) * 100",
+            "legendFormat": "Build Success Rate"
+          }
+        ],
+        "thresholds": [
+          {
+            "color": "red",
+            "value": 0
+          },
+          {
+            "color": "yellow",
+            "value": 90
+          },
+          {
+            "color": "green",
+            "value": 95
+          }
+        ],
+        "unit": "percent"
+      },
+      {
+        "id": 11,
+        "title": "Hotfix Frequency",
+        "type": "graph",
+        "description": "Rate of emergency fixes and patches",
+        "targets": [
+          {
+            "expr": "sum(rate(deployments_total{type=\"hotfix\"}[7d]))",
+            "legendFormat": "Hotfixes"
+          },
+          {
+            "expr": "sum(rate(deployments_total{type=\"patch\"}[7d]))",
+            "legendFormat": "Patches"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "per day",
+            "min": 0
+          }
+        ],
+        "alert": {
+          "conditions": [
+            {
+              "query": {
+                "queryType": "",
+                "refId": "A"
+              },
+              "reducer": {
+                "type": "last",
+                "params": []
+              },
+              "evaluator": {
+                "params": [0.5],
+                "type": "gt"
+              }
+            }
+          ],
+          "executionErrorState": "alerting",
+          "noDataState": "no_data",
+          "frequency": "1m",
+          "handler": 1,
+          "name": "High Hotfix Rate",
+          "message": "Hotfix rate is above acceptable threshold"
+        }
+      },
+      {
+        "id": 12,
+        "title": "Code Quality Trends",
+        "type": "graph",
+        "description": "Technical debt and code quality metrics",
+        "targets": [
+          {
+            "expr": "sonarqube_technical_debt_minutes",
+            "legendFormat": "Technical Debt ({{project}})"
+          },
+          {
+            "expr": "sonarqube_code_smells_total",
+            "legendFormat": "Code Smells ({{project}})"
+          },
+          {
+            "expr": "sonarqube_duplicated_lines_percentage",
+            "legendFormat": "Duplication % ({{project}})"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Count / Minutes / Percentage",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Dependency Vulnerabilities",
+        "type": "heatmap",
+        "description": "Security vulnerabilities in dependencies over time",
+        "targets": [
+          {
+            "expr": "dependency_vulnerabilities_total",
+            "legendFormat": "{{severity}}"
+          }
+        ],
+        "xAxis": {
+          "show": true
+        },
+        "yAxis": {
+          "show": true,
+          "label": "Severity"
+        },
+        "color": {
+          "mode": "spectrum",
+          "cardColor": "#b4ff00",
+          "colorScale": "sqrt",
+          "exponent": 0.5
+        }
+      },
+      {
+        "id": 14,
+        "title": "Rule Compliance Score",
+        "type": "gauge",
+        "description": "Universal Rules compliance percentage",
+        "targets": [
+          {
+            "expr": "universal_rules_compliance_percentage",
+            "legendFormat": "Compliance %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "min": 0,
+            "max": 100,
+            "thresholds": {
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "yellow",
+                  "value": 80
+                },
+                {
+                  "color": "green", 
+                  "value": 95
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 15,
+        "title": "Developer Productivity",
+        "type": "graph",
+        "description": "Lines of code, commits, and feature delivery",
+        "targets": [
+          {
+            "expr": "sum(rate(commits_total[1d]))",
+            "legendFormat": "Commits per day"
+          },
+          {
+            "expr": "sum(rate(features_delivered_total[1d]))",
+            "legendFormat": "Features delivered per day"
+          },
+          {
+            "expr": "avg(developer_velocity_story_points[1d])",
+            "legendFormat": "Avg velocity (story points)"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Count / Points",
+            "min": 0
+          }
+        ]
+      }
+    ],
+    "time": {
+      "from": "now-7d",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "variables": [
+      {
+        "name": "service",
+        "type": "query",
+        "query": "label_values(service)",
+        "refresh": "on_time_range_change",
+        "multi": true,
+        "includeAll": true
+      },
+      {
+        "name": "environment",
+        "type": "query", 
+        "query": "label_values(environment)",
+        "refresh": "on_time_range_change",
+        "multi": true,
+        "includeAll": true
+      },
+      {
+        "name": "team",
+        "type": "query",
+        "query": "label_values(team)",
+        "refresh": "on_time_range_change",
+        "multi": true,
+        "includeAll": true
+      }
+    ],
+    "annotations": {
+      "list": [
+        {
+          "name": "Deployments",
+          "datasource": "prometheus",
+          "enable": true,
+          "expr": "changes(deployment_timestamp[1m])",
+          "iconColor": "green",
+          "titleFormat": "Deployment: {{service}}"
+        },
+        {
+          "name": "Incidents",
+          "datasource": "prometheus", 
+          "enable": true,
+          "expr": "increase(incidents_total[1m])",
+          "iconColor": "red",
+          "titleFormat": "Incident: {{severity}}"
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "name": "Low Test Success Rate",
+      "condition": "test_success_rate < 95",
+      "severity": "warning",
+      "description": "Test success rate has dropped below 95%",
+      "runbook": "https://wiki.company.com/runbooks/test-failures"
+    },
+    {
+      "name": "High Change Failure Rate",
+      "condition": "change_failure_rate > 15",
+      "severity": "critical",
+      "description": "Change failure rate is above 15%",
+      "runbook": "https://wiki.company.com/runbooks/deployment-failures"
+    },
+    {
+      "name": "Critical Security Findings",
+      "condition": "security_findings{severity=\"critical\"} > 0",
+      "severity": "critical",
+      "description": "Critical security vulnerabilities detected",
+      "runbook": "https://wiki.company.com/runbooks/security-response"
+    },
+    {
+      "name": "Poor Rule Compliance", 
+      "condition": "universal_rules_compliance_percentage < 80",
+      "severity": "warning",
+      "description": "Universal Rules compliance below 80%",
+      "runbook": "https://wiki.company.com/runbooks/rule-compliance"
+    }
+  ],
+  "metadata": {
+    "created_by": "Universal Rules Framework",
+    "version": "1.0.0",
+    "last_updated": "2024-01-20",
+    "documentation": "https://wiki.company.com/monitoring/workflow-health",
+    "support_contact": "platform-team@company.com"
+  }
+} 
