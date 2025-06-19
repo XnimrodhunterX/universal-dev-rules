@@ -20,3 +20,6 @@ Thumbs.db
 *.tar.gz
 *.zip
 universal-dev-rules-v*/
+
+# Cursor IDE rules (optional - include if you want to version control them)
+# .cursor/rules/
