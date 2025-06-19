@@ -1,5 +1,46 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# Universal Development Rules - Documentation Standards
+
+Apply these documentation practices in all development work:
+
+## Code Documentation
+- Write clear, concise comments explaining WHY, not what
+- Use JSDoc, PyDoc, or equivalent for function/method documentation
+- Include examples in complex function documentation
+- Keep README files up-to-date with setup and usage instructions
+
+## API Documentation
+- Use OpenAPI 3.0+ specifications for all APIs
+- Include request/response examples
+- Document error responses with proper status codes
+- Provide authentication and authorization details
+
+## Architecture Documentation
+- Create Architecture Decision Records (ADRs) for significant decisions
+- Maintain system architecture diagrams (C4 model recommended)
+- Document data flow and integration patterns
+- Include deployment and infrastructure documentation
+
+## Technical Writing Standards
+- Use clear, active voice
+- Structure content with proper headings and hierarchy
+- Include code examples that are tested and working
+- Provide troubleshooting sections for common issues
+
+## Documentation Maintenance
+- Review and update documentation with each feature release
+- Use automated tools to check for broken links
+- Include documentation updates in code review process
+- Archive outdated documentation rather than leaving it stale
+
+## Team Knowledge Sharing
+- Document team decisions and processes
+- Create onboarding guides for new team members
+- Maintain runbooks for operational procedures
+- Share lessons learned through post-mortems
+
+@improved_rules/QC-07-documentation-standards.md

@@ -31,5 +31,5 @@ Apply these architectural principles consistently across all development:
 - Implement defense-in-depth strategies
 - Validate all inputs and sanitize outputs
 
-@intelligent_ide_rules/AR-05-design-architecture-principles.md
-@intelligent_ide_rules/CN-04-comprehensive-monitoring-observability.md
+AR-05-design-architecture-principles.md
+CN-04-comprehensive-monitoring-observability.md

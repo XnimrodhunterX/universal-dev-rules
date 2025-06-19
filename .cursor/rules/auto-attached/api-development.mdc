@@ -43,5 +43,5 @@ When developing APIs, follow these comprehensive standards:
 - Include error codes for programmatic handling
 - Log errors with appropriate detail levels
 
-@intelligent_ide_rules/MI-05-comprehensive-api-standards.md
-@intelligent_ide_rules/AR-05-design-architecture-principles.md
+MI-05-comprehensive-api-standards.md
+AR-05-design-architecture-principles.md

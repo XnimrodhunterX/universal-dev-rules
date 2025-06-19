@@ -43,5 +43,5 @@ When working with databases, apply these standards:
 - Implement alerting for performance degradation
 - Use database-specific monitoring tools
 
-@intelligent_ide_rules/DP-01-database-design.md
-@intelligent_ide_rules/DP-02-database-operations.md
+DP-01-database-design.md
+DP-02-database-operations.md

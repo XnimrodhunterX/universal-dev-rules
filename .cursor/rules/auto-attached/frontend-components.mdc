@@ -49,5 +49,5 @@ When developing frontend components and applications:
 - Use service workers for offline functionality
 - Apply proper caching strategies
 
-@intelligent_ide_rules/FE-01-frontend-development-standards.md
-@intelligent_ide_rules/FE-03-accessibility-inclusive-design.md
+FE-01-frontend-development-standards.md
+FE-03-accessibility-inclusive-design.md

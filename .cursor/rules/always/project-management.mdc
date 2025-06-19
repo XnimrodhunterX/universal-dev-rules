@@ -1,5 +1,50 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# Universal Development Rules - Project Management
+
+Apply these project management practices consistently:
+
+## Planning & Estimation
+- Break down work into small, manageable tasks (< 8 hours)
+- Use story points or time-based estimation consistently
+- Include technical debt and refactoring in sprint planning
+- Define clear acceptance criteria for all tasks
+
+## Version Control & Branching
+- Use semantic versioning (MAJOR.MINOR.PATCH)
+- Follow consistent branch naming: feature/task-description, bugfix/issue-description
+- Write meaningful commit messages with context
+- Use conventional commits format when possible
+
+## Issue & Task Management
+- Create detailed issue descriptions with context and requirements
+- Use labels/tags for categorization (bug, feature, technical-debt, etc.)
+- Link related issues and pull requests
+- Update status regularly and communicate blockers early
+
+## Code Review Process
+- Require peer review for all code changes
+- Review for functionality, security, performance, and maintainability
+- Provide constructive feedback with specific suggestions
+- Approve only when you would be comfortable maintaining the code
+
+## Communication & Collaboration
+- Use asynchronous communication as default (issues, PRs, documentation)
+- Schedule regular stand-ups or check-ins for complex projects
+- Document decisions and share context with the team
+- Escalate blockers and dependencies promptly
+
+## Quality & Delivery
+- Define "Definition of Done" for all work
+- Include testing, documentation, and deployment in task completion
+- Use continuous integration and automated quality checks
+- Plan for rollback and monitoring of changes
+
+## Risk Management
+- Identify and document technical risks early
+- Have contingency plans for critical dependencies
+- Monitor project health through metrics (velocity, cycle time, etc.)
+- Conduct regular retrospectives and act on feedback

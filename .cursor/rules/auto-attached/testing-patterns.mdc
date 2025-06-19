@@ -49,4 +49,4 @@ When writing tests, follow these comprehensive strategies:
 - Clean up test data after each test run
 - Use realistic but anonymized production data
 
-@intelligent_ide_rules/QC-01-comprehensive-testing-standards.md
+QC-01-comprehensive-testing-standards.md

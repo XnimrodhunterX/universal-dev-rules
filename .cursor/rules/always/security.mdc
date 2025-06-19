@@ -37,6 +37,6 @@ Apply these security practices in all code development:
 - Apply data residency and privacy regulations
 - Use secure communication protocols (TLS 1.3+)
 
-@intelligent_ide_rules/security/SEC-01-credential-hygiene.md
-@intelligent_ide_rules/security/SEC-04-identity-access-management.md
-@intelligent_ide_rules/security/SEC-11-secure-coding-standards.md
+security/SEC-01-credential-hygiene.md
+security/SEC-04-identity-access-management.md
+security/SEC-11-secure-coding-standards.md

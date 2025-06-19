@@ -43,6 +43,6 @@ Apply these patterns when designing or refactoring microservices:
 - Apply proper logging and metrics collection
 - Implement service-level monitoring and alerting
 
-@intelligent_ide_rules/MI-08-microservices-governance.md
-@intelligent_ide_rules/AR-01-event-driven-architecture-core.md
-@intelligent_ide_rules/AR-02-event-driven-architecture-enterprise.md
+MI-08-microservices-governance.md
+AR-01-event-driven-architecture-core.md
+AR-02-event-driven-architecture-enterprise.md

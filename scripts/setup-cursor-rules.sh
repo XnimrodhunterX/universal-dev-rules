@@ -92,6 +92,11 @@ else
     exit 1
 fi
 
+# Fix path references in copied rules
+echo "🔧 Fixing rule path references..."
+find "$PROJECT_DIR/.cursor/rules" -name "*.mdc" -type f -exec sed -i '' 's/@intelligent_ide_rules\///g' {} \; 2>/dev/null || true
+echo "   ✅ Fixed @intelligent_ide_rules/ references to match copied file locations"
+
 # Ensure project-specific rule exists (create if missing)
 PROJECT_RULE_FILE="$PROJECT_DIR/.cursor/rules/manual/project-standards.mdc"
 if [ ! -f "$PROJECT_RULE_FILE" ]; then
