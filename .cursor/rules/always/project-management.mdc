@@ -3,6 +3,41 @@ description:
 globs: 
 alwaysApply: false
 ---
+# Project Management & Governance Standards
+
+Apply comprehensive project management practices through these core rules:
+
+## Core Governance & Standards
+CN-10-governance-principles.md
+
+## Documentation & Knowledge Management  
+QC-07-documentation-standards.md
+
+## Code Review & Quality Processes
+QC-06-code-review-standards.md
+
+## CI/CD & Automation
+QC-04-cicd-pipelines.md
+
+## Security & Compliance Management
+SEC-01-credential-hygiene.md
+CN-18-devsecops-standards.md
+
+## Deployment & Release Management
+CN-07-deployment-strategies.md
+CN-08-release-management.md
+
+---
+
+These rules provide comprehensive coverage of:
+- 🏛️ **Governance**: Security-first development, lifecycle management, technical debt
+- 📚 **Documentation**: Standards, ADRs, runbooks, API docs
+- 🔍 **Quality**: Code review processes, testing standards, CI/CD gates
+- 🚀 **Delivery**: Deployment strategies, release management, automation
+- 🔒 **Security**: DevSecOps practices, credential management, compliance
+
+Use @governance-principles, @documentation-standards, or @code-review-standards in Cursor chat for specific guidance.
+
 # Universal Development Rules - Project Management
 
 Apply these project management practices consistently:
@@ -48,3 +83,8 @@ Apply these project management practices consistently:
 - Have contingency plans for critical dependencies
 - Monitor project health through metrics (velocity, cycle time, etc.)
 - Conduct regular retrospectives and act on feedback
+
+CN-10-governance-principles.md
+QC-07-documentation-standards.md
+QC-06-code-review-standards.md
+QC-04-cicd-pipelines.md

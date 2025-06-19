@@ -3,51 +3,45 @@ description:
 globs: 
 alwaysApply: false
 ---
-# Universal Development Rules - Frontend Development
+# Universal Development Rules - Frontend Components
 
-When developing frontend components and applications:
+When building frontend components, apply these standards:
 
 ## Component Architecture
-- Use functional components with hooks (React) or composition API (Vue)
-- Implement proper component composition and reusability
-- Apply single responsibility principle to components
+- Use composition over inheritance for component design
+- Implement single responsibility principle for components
+- Apply consistent prop interfaces and naming conventions
 - Use TypeScript for type safety and better developer experience
 
 ## State Management
-- Use local state for component-specific data
-- Apply global state management (Redux, Zustand, Pinia) for shared data
-- Implement proper state normalization for complex data
-- Use context/provide-inject for dependency injection
+- Use local component state for component-specific data
+- Apply centralized state management (Redux, Zustand, Pinia) for shared state
+- Implement proper state normalization patterns
+- Use immutable update patterns for state changes
 
 ## Performance Optimization
-- Implement code splitting and lazy loading
-- Use React.memo, useMemo, useCallback for optimization
-- Apply proper image optimization and lazy loading
-- Implement virtual scrolling for large lists
+- Implement proper component memoization (React.memo, useMemo, useCallback)
+- Use code splitting and lazy loading for large components
+- Apply virtual scrolling for large lists
+- Optimize bundle size with tree shaking
 
-## Styling & Design System
-- Use CSS-in-JS or utility-first CSS frameworks
-- Implement consistent design tokens and theme system
-- Apply responsive design principles
-- Use CSS Grid and Flexbox for layouts
+## Accessibility & UX
+- Implement proper ARIA attributes and semantic HTML
+- Ensure keyboard navigation support
+- Use proper color contrast ratios
+- Provide loading states and error boundaries
 
-## Accessibility (a11y)
-- Implement WCAG 2.1 AA compliance
-- Use semantic HTML elements properly
-- Provide proper ARIA labels and roles
-- Test with screen readers and keyboard navigation
-
-## Testing Frontend Components
+## Testing Strategies
 - Write unit tests for component logic
-- Use testing library for component testing
-- Implement visual regression testing
-- Test accessibility with automated tools
+- Implement integration tests for component interactions
+- Use visual regression testing for UI consistency
+- Apply accessibility testing tools
 
-## Build & Deployment
-- Use modern build tools (Vite, Webpack, Rollup)
-- Implement proper bundle optimization
-- Use service workers for offline functionality
-- Apply proper caching strategies
+## Styling & Theming
+- Use consistent design system and component libraries
+- Implement responsive design patterns
+- Apply CSS-in-JS or CSS modules for component isolation
+- Use design tokens for consistent theming
 
 FE-01-frontend-development-standards.md
 FE-03-accessibility-inclusive-design.md

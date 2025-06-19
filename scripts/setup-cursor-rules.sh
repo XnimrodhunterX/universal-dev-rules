@@ -72,6 +72,7 @@ mkdir -p "$PROJECT_DIR/.cursor/rules/always"
 mkdir -p "$PROJECT_DIR/.cursor/rules/auto-attached"
 mkdir -p "$PROJECT_DIR/.cursor/rules/agent-requested"
 mkdir -p "$PROJECT_DIR/.cursor/rules/manual"
+mkdir -p "$PROJECT_DIR/.cursor/rules/security"
 
 # Copy framework rules
 echo "📋 Copying framework rules..."
@@ -86,6 +87,22 @@ if [ -d "$RULES_SOURCE_DIR" ]; then
             echo "   ✅ Copied $category rules"
         fi
     done
+    
+    # Copy all referenced rule files (.md files) to the target directory
+    echo "📄 Copying referenced rule files..."
+    if [ -d "$RULES_SOURCE_DIR" ]; then
+        # Copy all .md files from the root .cursor/rules directory
+        find "$RULES_SOURCE_DIR" -maxdepth 1 -name "*.md" -exec cp {} "$PROJECT_DIR/.cursor/rules/" \; 2>/dev/null || true
+        
+        # Copy security subdirectory if it exists
+        if [ -d "$RULES_SOURCE_DIR/security" ]; then
+            cp -r "$RULES_SOURCE_DIR/security"/* "$PROJECT_DIR/.cursor/rules/security/" 2>/dev/null || true
+            echo "   ✅ Copied security rules"
+        fi
+        
+        echo "   ✅ Copied referenced rule files"
+    fi
+    
     echo "✅ Framework rules copied successfully!"
 else
     echo "❌ Framework rules not found at $RULES_SOURCE_DIR"
@@ -166,6 +183,7 @@ fi
 
 # Count installed rules
 RULE_COUNT=$(find "$PROJECT_DIR/.cursor/rules" -name "*.mdc" | wc -l | tr -d ' ')
+MD_COUNT=$(find "$PROJECT_DIR/.cursor/rules" -name "*.md" | wc -l | tr -d ' ')
 
 echo ""
 echo "🎉 Cursor rules setup complete!"
@@ -173,7 +191,8 @@ echo ""
 echo "📊 Installation Summary:"
 echo "   📁 Framework location: $FRAMEWORK_ROOT"
 echo "   🎯 Target project: $PROJECT_DIR"
-echo "   📋 Rules installed: $RULE_COUNT files"
+echo "   📋 Cursor rules (.mdc): $RULE_COUNT files"
+echo "   📄 Rule content (.md): $MD_COUNT files"
 echo ""
 echo "📋 What's been set up:"
 echo "   ✅ Core architecture rules (always applied)"
@@ -197,7 +216,7 @@ echo ""
 echo "📚 Documentation:"
 echo "   - Cursor Rules: https://docs.cursor.com/context/rules"
 echo "   - Framework Guide: $FRAMEWORK_ROOT/docs/CURSOR_INTEGRATION.md"
-echo "   - Full Rule Library: $FRAMEWORK_ROOT/intelligent_ide_rules/"
+echo "   - Full Rule Library: $FRAMEWORK_ROOT/.cursor/rules/"
 echo ""
 echo "🔧 Troubleshooting:"
 echo "   - If rules don't appear in Cursor, restart the IDE"

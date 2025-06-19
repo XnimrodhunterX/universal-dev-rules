@@ -1,5 +1,99 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# Project Development Standards
+
+Customize this rule for your specific project needs. Use @project-standards to invoke.
+
+## Technology Stack
+- Backend: [Your backend framework - e.g., FastAPI, Spring Boot, Express]
+- Frontend: [Your frontend framework - e.g., React, Vue, Angular]
+- Database: [Your database - e.g., PostgreSQL, MongoDB, MySQL]
+- Infrastructure: [Your infrastructure - e.g., AWS, GCP, Azure]
+
+## Project-Specific Patterns
+- [Add your specific error handling patterns]
+- [Add your naming conventions]
+- [Add your logging standards]
+- [Add your testing approaches]
+
+## File Organization
+- [Describe your project structure]
+- [Add your module organization]
+- [Add your import patterns]
+- [Add your component organization]
+
+## Code Style & Standards
+- [Add your linting rules]
+- [Add your formatting standards]
+- [Add your comment guidelines]
+- [Add your documentation requirements]
+
+## Deployment & Operations
+- [Add your deployment process]
+- [Add your monitoring requirements]
+- [Add your alerting standards]
+- [Add your backup procedures]
+
+## Team Conventions
+- [Add your branch naming]
+- [Add your commit message format]
+- [Add your PR/MR process]
+- [Add your code review guidelines]
+
+Usage: Type @project-standards in Cursor chat to invoke this rule.
+
+# Security Architecture Project Standards
+
+Use @project-standards to invoke these security architecture specific guidelines.
+
+## Technology Stack
+- Backend: Python (FastAPI/Flask), Security Analysis Tools
+- Frontend: React/Vue for security dashboards and reporting interfaces
+- Database: PostgreSQL for threat data, SQLite for local analysis
+- Infrastructure: AWS/Azure for cloud security architecture, Docker containers
+- Security Tools: OWASP ZAP, Nessus, Burp Suite, Metasploit
+
+## Security Architecture Patterns
+- Implement Zero Trust Architecture principles
+- Apply Defense in Depth strategies
+- Use Threat Modeling (STRIDE, PASTA, OCTAVE) methodologies
+- Follow NIST Cybersecurity Framework guidelines
+- Implement Security by Design principles
+
+## File Organization
+- `/threats/` - Threat modeling and analysis files
+- `/framework_templates/` - Reusable security architecture templates  
+- `/security_architecture_review_framework/` - Review and assessment frameworks
+- `/docs/` - Security architecture documentation
+- `/BARs/` - Business Architecture Requirements
+
+## Security Code Standards
+- All security analysis scripts must include threat context
+- Implement proper input validation for security tools
+- Use secure coding practices for all security utilities
+- Document all security assumptions and limitations
+- Include risk ratings and CVSS scores where applicable
+
+## Security Documentation Requirements
+- All threat models must include attack vectors and mitigations
+- Security architecture decisions must be documented with rationale
+- Risk assessments must follow organizational risk framework
+- Security controls must map to compliance requirements (SOC2, ISO27001, etc.)
+
+## Security Testing & Validation
+- All security frameworks must include test cases
+- Penetration testing scenarios must be documented
+- Security control effectiveness must be measurable
+- Vulnerability assessments must be automated where possible
+
+## Incident Response Integration
+- All security architectures must include incident response procedures
+- Security monitoring and alerting must be integrated
+- Forensic capabilities must be considered in design
+- Business continuity impact must be assessed
+
+Usage: Type @project-standards in Cursor chat to invoke these security architecture guidelines.
+
